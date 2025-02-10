@@ -1,21 +1,22 @@
 package com.sky.controller.admin;
 
 import com.sky.constant.JwtClaimsConstant;
+import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
+import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
 import com.sky.properties.JwtProperties;
+import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.EmployeeService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.EmployeeLoginVO;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class EmployeeController {
      * @param employeeLoginDTO
      * @return
      */
-    @ApiOperation(value = "登入")
+    @ApiOperation(value = "员工登录")
     @PostMapping("/login")
     public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {
         log.info("员工登录：{}", employeeLoginDTO);
@@ -70,9 +71,69 @@ public class EmployeeController {
      *
      * @return
      */
+    @ApiOperation(value = "员工退出登录")
     @PostMapping("/logout")
     public Result<String> logout() {
         return Result.success();
     }
+
+    /**
+     * 新增员工
+     * @param employeeDTO
+     * @return
+     */
+    @ApiOperation(value = "新增员工")
+    @PostMapping
+    public Result add(@RequestBody EmployeeDTO employeeDTO) {
+        employeeService.add(employeeDTO);
+        return Result.success();
+    }
+
+    /**
+     * 员工分页查询
+     * @param dto
+     * @return
+     */
+    @ApiOperation(value = "员工分页查询")
+    @GetMapping("/page")
+    public Result page(EmployeePageQueryDTO dto){
+        PageResult pageResult = employeeService.pageQuery(dto);
+        return Result.success(pageResult);
+    }
+
+    /**
+     * 开启或者禁用员工状态
+     * @param status
+     * @param id
+     * @return
+     */
+    @ApiOperation(value = "开启或者禁用员工状态")
+    @PostMapping("/status/{status}")
+    public Result updateStatus(@PathVariable Integer status, Long id){
+        employeeService.updateStatus(status, id);
+        return Result.success();
+    }
+
+    /**
+     * 根据ID查询员工信息
+     * @param id
+     * @return
+     */
+    @ApiOperation(value = "根据ID查询员工信息")
+    @GetMapping("/{id}")
+    public Result getById(@PathVariable Long id){
+        Employee e = employeeService.getById(id);
+        return Result.success(e);
+    }
+
+    @ApiOperation(value = "编辑员工信息")
+    @PutMapping
+    public Result update(@RequestBody EmployeeDTO employeeDTO){
+        employeeService.update(employeeDTO);
+        return Result.success();
+
+
+    }
+
 
 }
