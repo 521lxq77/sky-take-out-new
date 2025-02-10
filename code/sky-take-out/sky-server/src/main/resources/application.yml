@@ -1,6 +1,6 @@
 server:
   port: 8080
-
+# 多环境配置： 开发、测试、发布
 spring:
   profiles:
     active: dev
@@ -25,7 +25,7 @@ logging:
   level:
     com:
       sky:
-        mapper: debug
+        mapper: trace
         service: info
         controller: info
 
