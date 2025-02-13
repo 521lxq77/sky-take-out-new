@@ -35,6 +35,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public Result handleSQLIntegrityConstraintViolationException(SQLIntegrityConstraintViolationException e){
         //Duplicate entry 'cc' for key 'employee.idx_username'] with root cause
+        e.printStackTrace();
 
         //1. 使用异常对象获取异常的信息
         String message = e.getMessage();

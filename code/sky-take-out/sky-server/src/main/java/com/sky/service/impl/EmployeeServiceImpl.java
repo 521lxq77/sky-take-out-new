@@ -90,16 +90,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         //3. 看看employee还缺少什么属性的值没有，缺少什么就补充什么
         employee.setStatus(1);
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
 
         //创建的用户和更新的用户。。
         //1 要想获取登录的ID值，必须获取到token令牌
         //2 要想获取到token的令牌，必须从请求头里面获取
         //3 要想从请求头里面获取数据，必须借助request对象
 
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employee.setPassword("123456");
 
@@ -173,8 +173,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         BeanUtils.copyProperties(employeeDTO,employee);
 
         //3 补充其他属性
-        employee.setUpdateUser(BaseContext.getCurrentId());
-        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setUpdateTime(LocalDateTime.now());
 
         employeeMapper.update(employee);
     }

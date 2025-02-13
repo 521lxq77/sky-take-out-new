@@ -16,6 +16,9 @@
         <module>sky-common</module>
         <module>sky-pojo</module>
         <module>sky-server</module>
+        <module>day14_springboot</module>
+        <module>day14_springboot/aliyun-oss-spring-boot-autoconfigure</module>
+        <module>day14_springboot/aliyun-oss-spring-boot-starter</module>
     </modules>
     <properties>
         <mybatis.spring>2.2.0</mybatis.spring>

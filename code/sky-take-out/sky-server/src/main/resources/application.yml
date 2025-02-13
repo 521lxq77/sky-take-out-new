@@ -37,3 +37,12 @@ sky:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+
+
+# 配置阿里云OSS
+ali:
+  oss:
+    key: **********
+    secret: ****
+    endpoint: https://oss-cn-chengdu.aliyuncs.com
+    bucket: annian-cc
