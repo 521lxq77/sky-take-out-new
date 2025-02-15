@@ -67,4 +67,12 @@ public interface DishMapper {
             "status = #{status}, update_user = #{updateUser}, " +
             "update_time = #{updateTime} where id = #{id}")
     void update(Dish dish);
+
+    /**
+     *
+     * @param dish
+     * @return
+     */
+    @Select("select * from dish where category_id = #{categoryId} and status = #{status}")
+    List<Dish> list(Dish dish);
 }
