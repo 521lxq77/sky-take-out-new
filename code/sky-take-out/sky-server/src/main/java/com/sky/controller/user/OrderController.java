@@ -5,6 +5,7 @@ import com.sky.dto.OrdersPaymentDTO;
 import com.sky.dto.OrdersSubmitDTO;
 import com.sky.result.Result;
 import com.sky.service.OrderService;
+import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderSubmitVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,13 +34,27 @@ public class OrderController {
 
     @ApiOperation("订单支付")
     @PutMapping("/payment")
-    public Result payment(OrdersPaymentDTO ordersPaymentDTO){
-        return Result.success();
+    public Result payment(@RequestBody OrdersPaymentDTO ordersPaymentDTO) throws Exception {
+        OrderPaymentVO orderPaymentVO = orderService.payment(ordersPaymentDTO);
+        return Result.success(orderPaymentVO);
     }
 
     @RequestMapping("/paySuccess")
     public Result paySuccess(){
         // 去修改订单  修改状态  修改原因  开始制作菜品 联系骑手 开始送外卖
+
+        return Result.success();
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @ApiOperation("用户催单")
+    @GetMapping("/reminder/{id}")
+    public Result reminder(@PathVariable Long id){
+        orderService.reminder(id);
         return Result.success();
     }
 
