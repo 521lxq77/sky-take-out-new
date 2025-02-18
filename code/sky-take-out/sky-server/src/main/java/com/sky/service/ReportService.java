@@ -48,12 +48,12 @@ public interface ReportService {
      * @return
      */
     SalesTop10ReportVO getSalesTop10(LocalDate begin, LocalDate end);
-//
-//    /**
-//     * 导出excel
-//     *
-//     * @param resp
-//     */
-//    void exportExcel(HttpServletResponse resp);
+
+    /**
+     * 导出excel
+     *
+     * @param resp
+     */
+    void exportExcel(HttpServletResponse resp);
 
 }

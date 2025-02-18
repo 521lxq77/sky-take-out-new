@@ -88,14 +88,14 @@ public class ReportController {
         return Result.success(reportService.getSalesTop10(begin, end));
     }
 
-//    /**
-//     * 导出运营报表
-//     *
-//     * @param resp
-//     */
-//    @GetMapping("/export")
-//    public void exportExcel(HttpServletResponse resp) {
-//        reportService.exportExcel(resp);
-//    }
+    /**
+     * 导出运营报表
+     *
+     * @param resp
+     */
+    @GetMapping("/export")
+    public void exportExcel(HttpServletResponse resp) {
+        reportService.exportExcel(resp);
+    }
 
 }
